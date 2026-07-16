@@ -1,28 +1,42 @@
 import './App.css'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import type { Player, KaseyVerdict as Verdict } from './types'
 import { getKaseyAdvice } from './data/kaseyAdvice'
 import { PlayerSelector } from './components/PlayerSelector'
 import { KaseyVerdictCard } from './components/KaseyVerdictCard'
 import { KaseyAvatar } from './components/KaseyAvatar'
+
 export default function App() {
   const [playerA, setPlayerA] = useState<Player | null>(null)
   const [playerB, setPlayerB] = useState<Player | null>(null)
   const [verdict, setVerdict] = useState<Verdict | null>(null)
   const [isThinking, setIsThinking] = useState(false)
+  const resultsRef = useRef<HTMLElement>(null)
 
   const canCompare = playerA && playerB && playerA.id !== playerB.id
+
+  const scrollToResults = useCallback(() => {
+    requestAnimationFrame(() => {
+      resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [])
 
   const handleAskKasey = useCallback(() => {
     if (!playerA || !playerB || playerA.id === playerB.id) return
     setIsThinking(true)
     setVerdict(null)
-    // Dramatic pause — Kasey is "thinking" (mumbling)
+    scrollToResults()
     setTimeout(() => {
       setVerdict(getKaseyAdvice(playerA, playerB))
       setIsThinking(false)
     }, 1200)
-  }, [playerA, playerB])
+  }, [playerA, playerB, scrollToResults])
+
+  useEffect(() => {
+    if (verdict && !isThinking) {
+      scrollToResults()
+    }
+  }, [verdict, isThinking, scrollToResults])
 
   const handleReset = () => {
     setPlayerA(null)
@@ -51,19 +65,23 @@ export default function App() {
         </section>
 
         <section className="comparison">
-          <PlayerSelector
-            label="Player 1"
-            selected={playerA}
-            onSelect={setPlayerA}
-            excludeId={playerB?.id}
-          />
+          <div className="comparison-player comparison-player--first">
+            <PlayerSelector
+              label="Player 1"
+              selected={playerA}
+              onSelect={setPlayerA}
+              excludeId={playerB?.id}
+            />
+          </div>
           <div className="vs-badge">VS</div>
-          <PlayerSelector
-            label="Player 2"
-            selected={playerB}
-            onSelect={setPlayerB}
-            excludeId={playerA?.id}
-          />
+          <div className="comparison-player comparison-player--second">
+            <PlayerSelector
+              label="Player 2"
+              selected={playerB}
+              onSelect={setPlayerB}
+              excludeId={playerA?.id}
+            />
+          </div>
         </section>
 
         <div className="actions">
@@ -81,21 +99,28 @@ export default function App() {
           )}
         </div>
 
-        {isThinking && (
-          <div className="thinking">
-            <KaseyAvatar size="lg" animated />
-            <p className="thinking-text">*mumbled words* ... analyzing ...</p>
-          </div>
-        )}
+        <section
+          ref={resultsRef}
+          className="results-section"
+          aria-live="polite"
+          aria-label="Kasey's verdict"
+        >
+          {isThinking && (
+            <div className="thinking">
+              <KaseyAvatar size="lg" animated />
+              <p className="thinking-text">*mumbled words* ... analyzing ...</p>
+            </div>
+          )}
 
-        {verdict && !isThinking && (
-          <KaseyVerdictCard
-            verdict={verdict}
-            playerA={playerA!}
-            playerB={playerB!}
-            onReshuffle={handleAskKasey}
-          />
-        )}
+          {verdict && !isThinking && (
+            <KaseyVerdictCard
+              verdict={verdict}
+              playerA={playerA!}
+              playerB={playerB!}
+              onReshuffle={handleAskKasey}
+            />
+          )}
+        </section>
       </main>
 
       <footer className="footer">

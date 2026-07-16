@@ -48,9 +48,12 @@
   background: none;
   border: none;
   color: var(--text-muted);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   line-height: 1;
-  padding: 0.25rem;
+  padding: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .clear-btn:hover {
@@ -59,12 +62,12 @@
 
 .search-row input {
   width: 100%;
-  padding: 0.6rem 0.75rem;
+  padding: 0.75rem;
   background: var(--bg-dark);
   border: 1px solid var(--border);
   border-radius: 8px;
   color: var(--text-primary);
-  font-size: 0.95rem;
+  font-size: 16px;
 }
 
 .search-row input:focus {
@@ -80,13 +83,16 @@
 }
 
 .pos-tab {
-  padding: 0.25rem 0.6rem;
+  padding: 0.45rem 0.75rem;
   border-radius: 6px;
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text-muted);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
+  min-height: 36px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .pos-tab.active {
@@ -98,8 +104,9 @@
 .results-list {
   list-style: none;
   margin-top: 0.5rem;
-  max-height: 220px;
+  max-height: min(40vh, 280px);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .result-item {
@@ -107,13 +114,16 @@
   align-items: center;
   gap: 0.5rem;
   width: 100%;
-  padding: 0.5rem 0.4rem;
+  padding: 0.75rem 0.5rem;
   background: none;
   border: none;
   color: var(--text-primary);
   text-align: left;
   border-radius: 6px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .result-item:hover {

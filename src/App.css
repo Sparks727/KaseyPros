@@ -2,6 +2,15 @@
   max-width: 960px;
   margin: 0 auto;
   padding: 1.5rem;
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 640px) {
+  .app {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
 }
 
 .header {
@@ -61,15 +70,76 @@
   margin-bottom: 1.5rem;
 }
 
+.comparison-player--first {
+  grid-column: 1;
+}
+
+.comparison-player--second {
+  grid-column: 3;
+}
+
 @media (max-width: 640px) {
   .comparison {
     grid-template-columns: 1fr;
     gap: 0.75rem;
   }
 
+  .comparison-player--first {
+    grid-column: 1;
+    order: 1;
+  }
+
+  .comparison-player--second {
+    grid-column: 1;
+    order: 3;
+  }
+
   .vs-badge {
     justify-self: center;
     order: 2;
+    margin-top: 0;
+  }
+
+  .hero {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h2 {
+    font-size: 1.35rem;
+  }
+
+  .hero-sub {
+    font-size: 0.9rem;
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+
+  .tagline {
+    font-size: 0.8rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 1.25rem;
+  }
+
+  .btn {
+    width: 100%;
+    min-height: 48px;
+    font-size: 1.05rem;
+  }
+
+  .header {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+  }
+
+  .footer {
+    margin-top: 2rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -97,6 +167,15 @@
   margin-bottom: 2rem;
 }
 
+.results-section {
+  scroll-margin-top: 1rem;
+  min-height: 1px;
+}
+
+.results-section:empty {
+  display: none;
+}
+
 .btn {
   padding: 0.75rem 1.75rem;
   border-radius: 8px;
@@ -104,6 +183,8 @@
   font-size: 1rem;
   border: none;
   transition: transform 0.15s, opacity 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .btn:disabled {
