@@ -5,8 +5,6 @@ import { getKaseyAdvice } from './data/kaseyAdvice'
 import { PlayerSelector } from './components/PlayerSelector'
 import { KaseyVerdictCard } from './components/KaseyVerdictCard'
 import { KaseyAvatar } from './components/KaseyAvatar'
-import { CatchPhraseTicker } from './components/CatchPhraseTicker'
-
 export default function App() {
   const [playerA, setPlayerA] = useState<Player | null>(null)
   const [playerB, setPlayerB] = useState<Player | null>(null)
@@ -42,7 +40,6 @@ export default function App() {
             <p className="tagline">Who Should I Draft? — Kasey Edition</p>
           </div>
         </div>
-        <CatchPhraseTicker />
       </header>
 
       <main className="main">
