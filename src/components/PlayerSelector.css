@@ -1,0 +1,138 @@
+.player-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.selector-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.selector-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 120px;
+  box-shadow: var(--shadow);
+}
+
+.selected-player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.player-name {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.player-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0.25rem;
+}
+
+.clear-btn:hover {
+  color: var(--accent-orange);
+}
+
+.search-row input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.search-row input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+}
+
+.position-tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.pos-tab {
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.pos-tab.active {
+  background: var(--kasey-purple);
+  border-color: var(--kasey-purple);
+  color: white;
+}
+
+.results-list {
+  list-style: none;
+  margin-top: 0.5rem;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.4rem;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  text-align: left;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.result-item:hover {
+  background: var(--bg-card-hover);
+}
+
+.result-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.result-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.no-results {
+  padding: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
