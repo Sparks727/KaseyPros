@@ -79,7 +79,7 @@ export function PlayerSelector({ label, selected, onSelect, excludeId }: Props) 
                 {results.length === 0 ? (
                   <li className="no-results">No players found</li>
                 ) : (
-                  results.slice(0, 8).map((player) => (
+                  results.slice(0, 12).map((player) => (
                     <li key={player.id}>
                       <button
                         className="result-item"

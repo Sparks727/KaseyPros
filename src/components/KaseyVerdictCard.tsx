@@ -10,6 +10,8 @@ interface Props {
 }
 
 export function KaseyVerdictCard({ verdict, playerA, playerB, onReshuffle }: Props) {
+  if (!playerA || !playerB) return null
+
   const loser = verdict.pick.id === playerA.id ? playerB : playerA
 
   return (

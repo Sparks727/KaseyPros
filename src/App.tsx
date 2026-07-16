@@ -38,6 +38,16 @@ export default function App() {
     }
   }, [verdict, isThinking, scrollToResults])
 
+  const handlePlayerAChange = useCallback((player: Player | null) => {
+    setPlayerA(player)
+    setVerdict(null)
+  }, [])
+
+  const handlePlayerBChange = useCallback((player: Player | null) => {
+    setPlayerB(player)
+    setVerdict(null)
+  }, [])
+
   const handleReset = () => {
     setPlayerA(null)
     setPlayerB(null)
@@ -69,7 +79,7 @@ export default function App() {
             <PlayerSelector
               label="Player 1"
               selected={playerA}
-              onSelect={setPlayerA}
+              onSelect={handlePlayerAChange}
               excludeId={playerB?.id}
             />
           </div>
@@ -78,7 +88,7 @@ export default function App() {
             <PlayerSelector
               label="Player 2"
               selected={playerB}
-              onSelect={setPlayerB}
+              onSelect={handlePlayerBChange}
               excludeId={playerA?.id}
             />
           </div>
@@ -112,11 +122,11 @@ export default function App() {
             </div>
           )}
 
-          {verdict && !isThinking && (
+          {verdict && !isThinking && playerA && playerB && (
             <KaseyVerdictCard
               verdict={verdict}
-              playerA={playerA!}
-              playerB={playerB!}
+              playerA={playerA}
+              playerB={playerB}
               onReshuffle={handleAskKasey}
             />
           )}
