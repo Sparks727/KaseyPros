@@ -102,9 +102,6 @@ export default function App() {
         <p>
           Not affiliated with FantasyPros. Or accuracy. Or Kasey's actual opinions.
         </p>
-        <p className="footer-note">
-          Drop Kasey photos in <code>public/images/kasey/</code> when ready — we'll wire them up.
-        </p>
       </footer>
     </div>
   )

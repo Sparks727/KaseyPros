@@ -2,26 +2,13 @@
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+  border: 2px solid var(--accent-gold);
+  background: var(--bg-card);
 }
 
 .kasey-avatar--sm { width: 40px; height: 40px; }
 .kasey-avatar--md { width: 56px; height: 56px; }
-.kasey-avatar--lg { width: 80px; height: 80px; }
-
-.kasey-avatar--placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--kasey-purple), #a855f7);
-  border: 2px solid var(--accent-gold);
-}
-
-.kasey-initial {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.8em;
-  color: white;
-  line-height: 1;
-}
+.kasey-avatar--lg { width: 96px; height: 96px; }
 
 .kasey-avatar--animated {
   animation: wobble 1.2s ease infinite;

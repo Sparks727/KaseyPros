@@ -1,4 +1,5 @@
 import './KaseyAvatar.css'
+import { KASEY_AVATAR_SRC } from '../constants/kasey'
 
 interface Props {
   size?: 'sm' | 'md' | 'lg'
@@ -6,27 +7,12 @@ interface Props {
   src?: string
 }
 
-/**
- * Placeholder avatar for Kasey.
- * Drop images in public/images/kasey/ and pass src="/images/kasey/your-photo.jpg"
- */
-export function KaseyAvatar({ size = 'md', animated = false, src }: Props) {
-  if (src) {
-    return (
-      <img
-        src={src}
-        alt="Kasey"
-        className={`kasey-avatar kasey-avatar--${size} ${animated ? 'kasey-avatar--animated' : ''}`}
-      />
-    )
-  }
-
+export function KaseyAvatar({ size = 'md', animated = false, src = KASEY_AVATAR_SRC }: Props) {
   return (
-    <div
-      className={`kasey-avatar kasey-avatar--placeholder kasey-avatar--${size} ${animated ? 'kasey-avatar--animated' : ''}`}
-      aria-label="Kasey"
-    >
-      <span className="kasey-initial">K</span>
-    </div>
+    <img
+      src={src}
+      alt="Kasey"
+      className={`kasey-avatar kasey-avatar--${size} ${animated ? 'kasey-avatar--animated' : ''}`}
+    />
   )
 }
